@@ -21,13 +21,13 @@ class LemonadeStand {
   signs: number;
   price: number;
 
-  constructor(_lemonades,_signs,price){
+  constructor(_lemonades:number,_signs:number,_price:number){
     this.lemonades = _lemonades;
     this.signs = _signs;
     this.price = _price;
   }
 
-  CalcDayPass(weather){
+  CalcDayPass(weather:Weather){
     let base = 1;
     switch(weather.status) {
       case "absolute drought":
@@ -46,7 +46,7 @@ class LemonadeStand {
         base=0.5;
         break;
       case "raining":
-        base=0.4'
+        base=0.4;
         break;
       case "storming":
         base=0.3;
@@ -76,9 +76,10 @@ while(true){
   console.log(`The cost of lemonade is $${lemonadePrice/100}.${lemonadePrice%100}`);
   console.log(`Today is ${weather.report()}`);
   console.log(`Assets: $${money/100}.${money%100}`);
-  const numLemonade = 0;
-  while(true){}
-    rl.question(`How many glasses of lemonade would you like to make?`,num => {
+  let numLemonade = 0;
+  while(true){
+    rl.question(`How many glasses of lemonade would you like to make?`,(nums:string) => {
+      let num = Number(nums);
       if(num*lemonadePrice>money){
         console.log("YOU DON'T HAVE ENOUGH");
       }else{
@@ -87,9 +88,10 @@ while(true){
       }
     });
   }
-  const numSigns = 0;
-  while(true){}
-    rl.question(`How many advertising signs would you like to make (15 cent each)?`,num => {
+  let numSigns = 0;
+  while(true){
+    rl.question(`How many advertising signs would you like to make (15 cent each)?`,(nums:string) => {
+      let num = Number(nums);
       if(num*15>money){
         console.log("YOU DON'T HAVE ENOUGH");
       }else{
@@ -98,8 +100,9 @@ while(true){
       }
     });
   }
-  const price = 0;
-  rl.question(`What price should you charge per lemonade? (in cents)`,num => {
+  let price = 0;
+  rl.question(`What price should you charge per lemonade? (in cents)`,(nums:string) => {
+    let num = Number(nums);
     price = num;
   });
   let lemonadeStand = new LemonadeStand(numLemonade,numSigns,price);
