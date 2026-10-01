@@ -19,10 +19,43 @@ class Weather {
 class LemonadeStand {
   lemonades: number;
   signs: number;
+  price: number;
 
-  constructor(_lemonades=0,_signs=0){
+  constructor(_lemonades,_signs,price){
     this.lemonades = _lemonades;
     this.signs = _signs;
+    this.price = _price;
+  }
+
+  CalcDayPass(weather){
+    let base = 1;
+    switch(weather.status) {
+      case "absolute drought":
+        base=1;
+        break;
+      case "super sunny":
+        base=0.95;
+        break;
+      case "sunny":
+        base=0.85;
+        break;
+      case "slight cloudy":
+        base=0.7;
+        break;
+      case "overcast":
+        base=0.5;
+        break;
+      case "raining":
+        base=0.4'
+        break;
+      case "storming":
+        base=0.3;
+        break;
+      case "hailing":
+        base=0.2;
+        break;
+    }
+    
   }
 }
 
@@ -34,11 +67,29 @@ rl.question(`What's your name?`, name => {
 });
 
 let day = 1;
+let money = 200;
 
 while(true){
   const weather = new Weather();
   const lemonadePrice = Math.floor(day/2)+1;
   console.log(`- - - - - DAY ${day++} - - - - -`);
+  console.log(`The cost of lemonade is ${lemonadePrice} cents`);
   console.log(`Today is ${weather.report()}`);
-  console.log(`The cost of lemonade is ${} cents`);
+  console.log(`Assets: $${money/100}.${money%100}`);
+  const numLemonade = 0;
+  rl.question(`How many glasses of lemonade would you like to make?`,num => {
+    numLemonade = num;
+  });
+  const numSigns = 0;
+  rl.question(`How many advertising signs would you like to make (15 cent each)?`,num => {
+    numSigns = num;
+  });
+  const price = 0;
+  rl.question(`What price should you charge per lemonade? (in cents)`,num => {
+    price = num;
+  });
+  let lemonadeStand = new LemonadeStand(numLemonade,numSigns,price);
+  let profitReport = lemonadeStand.CalcDayPass(weather);
+  console.log(`FINANCIAL REPORT FOR DAY ${day}`);
+
 }
