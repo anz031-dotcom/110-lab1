@@ -1,0 +1,5 @@
+As a player, I want to be able to see the weather so that I can predict how many customers I get.
+As a player, I want to be able to see my supplies when restocking so that I can know if I want to to purchase more.
+As a player, I want more visual flair so that I can enjoy the game more.
+As a developer, I want the game to restock at the beginning of the day only so that the player has to be strategic.
+As a viewer of the player, I want to visually see the actions my player takes so I'm not lost on what they're doing.
