@@ -55,7 +55,7 @@ class LemonadeStand {
         base=0.2;
         break;
     }
-    
+
   }
 }
 
@@ -73,17 +73,31 @@ while(true){
   const weather = new Weather();
   const lemonadePrice = Math.floor(day/2)+1;
   console.log(`- - - - - DAY ${day++} - - - - -`);
-  console.log(`The cost of lemonade is ${lemonadePrice} cents`);
+  console.log(`The cost of lemonade is $${lemonadePrice/100}.${lemonadePrice%100}`);
   console.log(`Today is ${weather.report()}`);
   console.log(`Assets: $${money/100}.${money%100}`);
   const numLemonade = 0;
-  rl.question(`How many glasses of lemonade would you like to make?`,num => {
-    numLemonade = num;
-  });
+  while(true){}
+    rl.question(`How many glasses of lemonade would you like to make?`,num => {
+      if(num*lemonadePrice>money){
+        console.log("YOU DON'T HAVE ENOUGH");
+      }else{
+        numLemonade = num;
+        money-=numLemonade*lemonadePrice;
+      }
+    });
+  }
   const numSigns = 0;
-  rl.question(`How many advertising signs would you like to make (15 cent each)?`,num => {
-    numSigns = num;
-  });
+  while(true){}
+    rl.question(`How many advertising signs would you like to make (15 cent each)?`,num => {
+      if(num*15>money){
+        console.log("YOU DON'T HAVE ENOUGH");
+      }else{
+        numSigns = num;
+        money-=numSigns*15;
+      }
+    });
+  }
   const price = 0;
   rl.question(`What price should you charge per lemonade? (in cents)`,num => {
     price = num;
